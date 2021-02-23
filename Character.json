@@ -1,0 +1,48 @@
+{
+  "charactername": "Exalted Test Character Name",
+  "exaltedtype": "Solar",
+  "essence": "1",
+  "willpower": "5",
+  "attributes": [
+    {
+      "strength": "2",
+      "dexterity": "2",
+      "stamina": "2",
+      "charimsa": "2",
+      "manipulation": "2",
+      "appearance": "2",
+      "perception": "2",
+      "intelligence": "2",
+      "wits": "2"
+    }
+  ],
+  "abilities": [
+   {
+    "archery": "2",
+    "athletics": "2",
+    "awareness": "2",
+    "brawl": "2",
+    "bureaucray": "2",
+    "craft": "2",
+    "dodge": "2",
+    "integrity": "1",
+    "larceny": "1",
+    "lore": "1",
+    "martial Arts": "1",
+    "medicine": "1",
+    "melee": "1",
+    "occult": "1",
+    "performance": "1",
+    "presence": "1",
+    "resistance": "1",
+    "ride": "1",
+    "sail": "1",
+    "socialize": "1",
+    "stealth": "1",
+    "survival": "1",
+    "thrown": "1",
+    "war": "2"
+   }
+ ]
+
+}
