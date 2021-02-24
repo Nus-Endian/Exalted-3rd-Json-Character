@@ -58,7 +58,37 @@ class CharacterPrompt(cmd.Cmd):
     def do_joinbattle(self, arg):
         self.onecmd("dice perception awareness")
     def help_joinbattle(self):
-        print("shows joinbattle (perception+awareness)")
+        print("shows join battle roll (perception+awareness)")
+    def do_shapespell(self, arg):
+        self.onecmd("dice intelligence occult")
+    def help_shapespell(self):
+        print("shows the roll how to shape (case) a spell (intelligence+occult)")
+    def do_decisiveattack(self, arg):
+        print("########## Archery #########")
+        self.onecmd("dice dexterity archery")
+        print("########## Melee #########")
+        self.onecmd("dice dexterity melee")
+        print("###### Martial Arts ######")
+        self.onecmd("dice dexterity martialarts")
+        print("########## Thrown ########")
+        self.onecmd("dice dexterity thrown")
+    def help_decisiveattack(self):
+        print("prints out default all main physical attack pools")
+    def do_rush(self, arg):
+        self.onecmd("dice dexterity athletics")
+    def help_rush(self):
+        print("Show Rush pool (dexterity+athletics)")
+    def do_disengage(self, arg):
+        self.onecmd("dice dexterity dodge")
+    def help_disengage(self):
+        print("Show Disengage pool (dexterity+dodge)")
+    def do_naturalsoak(self, arg):
+        self.onecmd("dice stamina")
+    def help_naturalsoak(self)
+        print("Show Natural Soak (Stamina)")
+
+
+
 
     #Dice pools, any
     def do_dice(self, arg):
