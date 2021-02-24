@@ -84,7 +84,7 @@ class CharacterPrompt(cmd.Cmd):
         print("Show Disengage pool (dexterity+dodge)")
     def do_naturalsoak(self, arg):
         self.onecmd("dice stamina")
-    def help_naturalsoak(self)
+    def help_naturalsoak(self):
         print("Show Natural Soak (Stamina)")
 
 
