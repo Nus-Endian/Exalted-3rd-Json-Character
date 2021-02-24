@@ -20,6 +20,15 @@ def dice_build_statlist(in_arglist,in_statlist):
                 statlist.append(ttmp)
     return statlist
 
+def charm_build_list(in_arglist,in_charmlist):
+    charmlist=in_charmlist
+    arglist=in_arglist
+    for t_key in arglist:
+            if t_key in TheCharacter.get("charms"):
+                ttmp = TheCharacter.get("charms").get(t_key)
+                charmlist.append(ttmp)
+    return charmlist
+
 #Functions
 def checkCharacterKey(dict, key):
 
@@ -38,8 +47,6 @@ class CharacterPrompt(cmd.Cmd):
 
     #Overall Character commands
     def do_character(self, inp):
-        #print(TheCharacter.keys())
-        #print(str(TheCharacter))
         print(yaml.dump(TheCharacter, default_flow_style=False))
     def do_shortcharacter(self, inp):
         print(str(TheCharacter))
@@ -70,6 +77,22 @@ class CharacterPrompt(cmd.Cmd):
             return
         print(TheCharacter.get("abilities")[arg])
         #arg)
+
+    #Weapons commands
+    def do_showweapons(self, inp):
+        print(yaml.dump(TheCharacter.get("weapons"), default_flow_style=False))
+
+    #show all charims
+    def do_showallcharms(self, inp):
+        print(yaml.dump(TheCharacter.get("charms"), default_flow_style=False))
+    def do_excellencies(self, inp):
+        print(yaml.dump(TheCharacter.get("charms").get("excellencies"), default_flow_style=False))
+    def do_charmlist(self, arg):
+        arglist=arg.split()
+        charmlist = []
+        charm_build_list(arglist,charmlist)
+        print(charmlist)
+
 
     #Dice Pools, common Pools
     def do_joinbattle(self, arg):

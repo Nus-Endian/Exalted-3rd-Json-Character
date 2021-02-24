@@ -54,17 +54,29 @@
    {
      "templateweaponmelee":
      {
+       "name": "meleetemp",
        "accuracy": 1,
        "damage": 1,
        "defence": 1,
        "overwhelming": 1,
        "tags": ["two handed","piercing"],
        "ability": "melee"
+     },
+     "templaterangedaccurancy":
+     {
+       "name": "bowtemp",
+       "accuracy": 0,
+       "damage": 1,
+       "defence": 1,
+       "overwhelming": 1,
+       "tags": ["ranged"],
+       "ability": "archery"
      }
    },
    "charms":
    {
      "excellencies": ["melee", "archery"],
+     "dodge": ["Reed in the Wind", "Flow like Blood"],
      "melee": ["Fire and Stone Strike"],
      "spirit": ["none"]
    }
