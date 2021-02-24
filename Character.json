@@ -41,7 +41,32 @@
     "survival": "1",
     "thrown": "1",
     "war": "2"
+  },
+  "healthlevels":
+  {
+    "0": 1,
+    "-1": 2,
+    "-2": 2,
+    "-4": 1,
+    "incapacitated": 1
+  },
+   "weapons":
+   {
+     "templateweaponmelee":
+     {
+       "accuracy": 1,
+       "damage": 1,
+       "defence": 1,
+       "overwhelming": 1,
+       "tags": ["two handed","piercing"],
+       "ability": "melee"
+     }
+   },
+   "charms":
+   {
+     "excellencies": ["melee", "archery"],
+     "melee": ["Fire and Stone Strike"],
+     "spirit": ["none"]
    }
-
 
 }
