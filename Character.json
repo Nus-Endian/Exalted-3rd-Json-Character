@@ -3,7 +3,7 @@
   "exaltedtype": "Solar",
   "essence": "1",
   "willpower": "5",
-  "attributes": [
+  "attributes":
     {
       "strength": "2",
       "dexterity": "2",
@@ -14,9 +14,8 @@
       "perception": "2",
       "intelligence": "2",
       "wits": "2"
-    }
-  ],
-  "abilities": [
+    },
+  "abilities":
    {
     "archery": "2",
     "athletics": "2",
@@ -43,6 +42,6 @@
     "thrown": "1",
     "war": "2"
    }
- ]
+
 
 }

@@ -2,6 +2,7 @@ import json
 import cmd
 import yaml
 
+
 #Functions
 def checkCharacterKey(dict, key):
 
@@ -56,9 +57,22 @@ class CharacterPrompt(cmd.Cmd):
     def do_dice(self, arg):
         print("arg " + arg)
         print(type(arg))
-        for t_key in TheCharacter:
-            print(TheCharacter.get(t_key))
-            print(type(TheCharacter.get(t_key)))
+        arglist=arg.split()
+
+        statlist = []
+        for t_key in arglist:
+            print("t_key: " + t_key)
+            if t_key in TheCharacter:
+                    ttmp = {TheCharacter.get(t_key), t_key}
+                    statlist.append(ttmp)
+            else:
+                if t_key in TheCharacter.get("abilities"):
+                    ttmp = {TheCharacter.get("abilities").get(t_key), t_key}
+                    statlist.append(ttmp)
+                if t_key in TheCharacter.get("attributes"):
+                    ttmp = {TheCharacter.get("attributes").get(t_key), t_key}
+                    statlist.append(ttmp)
+        print(statlist)
 
     def help_character(self):
         print("Print the entire character statistics")
@@ -81,8 +95,8 @@ with open('Character.json') as f:
 
 print(str(TheCharacter.get("charactername")))
 
-
-CharacterPrompt().cmdloop()
+if __name__ == '__main__':
+    CharacterPrompt().cmdloop()
 
 
 #LoopBreaker = 1
