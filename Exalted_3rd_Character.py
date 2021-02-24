@@ -3,6 +3,23 @@ import cmd
 import yaml
 
 
+#General helpfunctions for CharacterPrompt
+def dice_build_statlist(in_arglist,in_statlist):
+    statlist=in_statlist
+    arglist=in_arglist
+    for t_key in arglist:
+        if t_key in TheCharacter:
+                ttmp = {TheCharacter.get(t_key), t_key}
+                statlist.append(ttmp)
+        else:
+            if t_key in TheCharacter.get("abilities"):
+                ttmp = {TheCharacter.get("abilities").get(t_key), t_key}
+                statlist.append(ttmp)
+            if t_key in TheCharacter.get("attributes"):
+                ttmp = {TheCharacter.get("attributes").get(t_key), t_key}
+                statlist.append(ttmp)
+    return statlist
+
 #Functions
 def checkCharacterKey(dict, key):
 
@@ -93,19 +110,8 @@ class CharacterPrompt(cmd.Cmd):
     #Dice pools, any
     def do_dice(self, arg):
         arglist=arg.split()
-
         statlist = []
-        for t_key in arglist:
-            if t_key in TheCharacter:
-                    ttmp = {TheCharacter.get(t_key), t_key}
-                    statlist.append(ttmp)
-            else:
-                if t_key in TheCharacter.get("abilities"):
-                    ttmp = {TheCharacter.get("abilities").get(t_key), t_key}
-                    statlist.append(ttmp)
-                if t_key in TheCharacter.get("attributes"):
-                    ttmp = {TheCharacter.get("attributes").get(t_key), t_key}
-                    statlist.append(ttmp)
+        dice_build_statlist(arglist,statlist)
         print(statlist)
     def help_dice(self):
         print("Usage: dice (ability/attribute/essence/willpower)")
