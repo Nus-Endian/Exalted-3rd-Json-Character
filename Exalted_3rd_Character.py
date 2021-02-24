@@ -51,17 +51,21 @@ class CharacterPrompt(cmd.Cmd):
             print("need an ability argument to print a value")
             print("or did you mean abilities")
             return
-        print(TheCharacter.get("abilities")[0][arg])
+        print(TheCharacter.get("abilities")[arg])
         #arg)
 
+    #Dice Pools, common Pools
+    def do_joinbattle(self, arg):
+        self.onecmd("dice perception awareness")
+    def help_joinbattle(self):
+        print("shows joinbattle (perception+awareness)")
+
+    #Dice pools, any
     def do_dice(self, arg):
-        print("arg " + arg)
-        print(type(arg))
         arglist=arg.split()
 
         statlist = []
         for t_key in arglist:
-            print("t_key: " + t_key)
             if t_key in TheCharacter:
                     ttmp = {TheCharacter.get(t_key), t_key}
                     statlist.append(ttmp)
@@ -73,6 +77,12 @@ class CharacterPrompt(cmd.Cmd):
                     ttmp = {TheCharacter.get("attributes").get(t_key), t_key}
                     statlist.append(ttmp)
         print(statlist)
+    def help_dice(self):
+        print("Usage: dice (ability/attribute/essence/willpower)")
+        print("This will give use all stats and the number of dots specified")
+        print("example: ")
+        print("Character: dice strength dodge")
+        print("{'strength', '2'}, {'dodge', '2'}]")
 
     def help_character(self):
         print("Print the entire character statistics")
