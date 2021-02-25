@@ -69,14 +69,11 @@ class CharacterPrompt(cmd.Cmd):
     def do_shortabilities(self, inp):
         print(str(TheCharacter.get("abilities")))
     def do_ability(self, arg):
-        #'Save future commands to filename:  RECORD rose.cmd'
-        #self.file = open(arg, 'w')
         if arg == "":
             print("need an ability argument to print a value")
             print("or did you mean abilities")
             return
         print(TheCharacter.get("abilities")[arg])
-        #arg)
 
     #Weapons commands
     def do_showweapons(self, inp):
@@ -93,6 +90,11 @@ class CharacterPrompt(cmd.Cmd):
         charm_build_list(arglist,charmlist)
         print(charmlist)
 
+    #Show Merits
+    def do_merits(self, inp):
+        print(yaml.dump(TheCharacter.get("merits"), default_flow_style=False))
+    def help_mertis(self):
+        print("list of merits")
 
     #Dice Pools, common Pools
     def do_joinbattle(self, arg):

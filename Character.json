@@ -50,6 +50,37 @@
     "-4": 1,
     "incapacitated": 1
   },
+  "specialties":
+  {
+    "archery": ["none"],
+    "athletics": ["none"],
+    "awareness": ["none"],
+    "brawl": ["none"],
+    "bureaucray": ["none"],
+    "craft": ["none"],
+    "dodge": ["none"],
+    "integrity": ["none"],
+    "larceny": ["none"],
+    "lore": ["none"],
+    "martialarts": ["none"],
+    "medicine": ["none"],
+    "melee": ["none"],
+    "occult": ["none"],
+    "performance": ["none"],
+    "presence": ["none"],
+    "resistance": ["none"],
+    "ride": ["none"],
+    "sail": ["none"],
+    "socialize": ["none"],
+    "stealth": ["none"],
+    "survival": ["none"],
+    "thrown": ["none"],
+    "war": ["none"]
+  },
+  "merits":
+  [
+    "merit template 1", "merit template 2"
+  ],
    "weapons":
    {
      "templateweaponmelee":
@@ -60,7 +91,8 @@
        "defence": 1,
        "overwhelming": 1,
        "tags": ["two handed","piercing"],
-       "ability": "melee"
+       "ability": "melee",
+       "specality": "no"
      },
      "templaterangedaccurancy":
      {
@@ -70,7 +102,8 @@
        "defence": 1,
        "overwhelming": 1,
        "tags": ["ranged"],
-       "ability": "archery"
+       "ability": "archery",
+       "specality": "yes"
      }
    },
    "charms":
