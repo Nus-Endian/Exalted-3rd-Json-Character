@@ -168,20 +168,3 @@ print(str(TheCharacter.get("charactername")))
 
 if __name__ == '__main__':
     CharacterPrompt().cmdloop()
-
-
-#LoopBreaker = 1
-#while LoopBreaker > 0:
-#    print("What do you want")
-#    t_input = input("Character: ")
-
-#    if t_input.lower() == "exit":
-#        exit()
-
-#    if t_input in TheCharacter:
-#        print("yes," + t_input + " is one of the keys")
-
-#    if t_input.lower() == "character":
-#        print(TheCharacter.keys())
-
-#    checkCharacterKey(TheCharacter, t_input.lower())
