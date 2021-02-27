@@ -46,10 +46,23 @@ class CharacterPrompt(cmd.Cmd):
         return True
 
     #Overall Character commands
-    def do_character(self, inp):
+    def do_allcharacter(self, inp):
         print(yaml.dump(TheCharacter, default_flow_style=False))
-    def do_shortcharacter(self, inp):
+    def help_allcharacter(self):
+        print("Print the entire character statistics")
+    def do_shortallcharacter(self, inp):
         print(str(TheCharacter))
+    def do_shortallcharacter(self, inp):
+        statlist = []
+
+        statlist.append(TheCharacter.get("charactername"))
+        statlist.append(TheCharacter.get("essence"))
+        statlist.append(TheCharacter.get("abilities"))
+        statlist.append(TheCharacter.get("attributes"))
+        statlist.append(TheCharacter.get("healthlevels"))
+
+
+        print(yaml.dump(statlist, default_flow_style=False))
 
     #Top Level Statistics
     def do_name(self, inp):
@@ -69,11 +82,14 @@ class CharacterPrompt(cmd.Cmd):
     def do_shortabilities(self, inp):
         print(str(TheCharacter.get("abilities")))
     def do_ability(self, arg):
+        #'Save future commands to filename:  RECORD rose.cmd'
+        #self.file = open(arg, 'w')
         if arg == "":
             print("need an ability argument to print a value")
             print("or did you mean abilities")
             return
         print(TheCharacter.get("abilities")[arg])
+        #arg)
 
     #Weapons commands
     def do_showweapons(self, inp):
@@ -90,11 +106,6 @@ class CharacterPrompt(cmd.Cmd):
         charm_build_list(arglist,charmlist)
         print(charmlist)
 
-    #Show Merits
-    def do_merits(self, inp):
-        print(yaml.dump(TheCharacter.get("merits"), default_flow_style=False))
-    def help_mertis(self):
-        print("list of merits")
 
     #Dice Pools, common Pools
     def do_joinbattle(self, arg):
@@ -145,8 +156,6 @@ class CharacterPrompt(cmd.Cmd):
         print("Character: dice strength dodge")
         print("{'strength', '2'}, {'dodge', '2'}]")
 
-    def help_character(self):
-        print("Print the entire character statistics")
     def help_shortcharacter(self):
         print("Print condensed entire character statistics")
     def help_abilities(self):
