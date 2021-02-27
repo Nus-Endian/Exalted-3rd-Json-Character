@@ -29,15 +29,6 @@ def charm_build_list(in_arglist,in_charmlist):
                 charmlist.append(ttmp)
     return charmlist
 
-#Functions
-def checkCharacterKey(dict, key):
-
-    if key in dict.keys():
-        print("", dict[key])
-    else:
-        print("Not present")
-    return
-
 class CharacterPrompt(cmd.Cmd):
     intro = 'Welcome to Exalted 3rd Character Shell. Type help or ? to list commands.\n '
     prompt = 'Character: '
@@ -52,25 +43,28 @@ class CharacterPrompt(cmd.Cmd):
         print("Print the entire character statistics")
     def do_shortallcharacter(self, inp):
         print(str(TheCharacter))
-    def do_shortallcharacter(self, inp):
+    def do_shortcharacter(self, inp):
         statlist = []
-
         statlist.append(TheCharacter.get("charactername"))
         statlist.append(TheCharacter.get("essence"))
         statlist.append(TheCharacter.get("abilities"))
         statlist.append(TheCharacter.get("attributes"))
         statlist.append(TheCharacter.get("healthlevels"))
-
-
         print(yaml.dump(statlist, default_flow_style=False))
 
     #Top Level Statistics
     def do_name(self, inp):
         print(yaml.dump(TheCharacter.get("name"), default_flow_style=False))
+    def help_name(self, inp):
+        print("Shows the character Name")
     def do_essence(self, inp):
         print(yaml.dump(TheCharacter.get("essence"), default_flow_style=False))
+    def help_essence(self, inp):
+        print("Shows the Exalt's permanent esssence")
     def do_willpower(self, inp):
         print(yaml.dump(TheCharacter.get("willpower"), default_flow_style=False))
+    def help_willpower(self, inp):
+        print("Shows permanent willpower")
 
     #Attributes commands
     def do_attributes(self, inp):
