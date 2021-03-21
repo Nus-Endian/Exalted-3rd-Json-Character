@@ -1,6 +1,7 @@
 import json
 import cmd
 import yaml
+import sys, getopt
 
 
 #General helpfunctions for CharacterPrompt
@@ -169,14 +170,30 @@ def parse(arg):
     'Convert a series of zero or more numbers to an argument tuple'
     return tuple(map(int, arg.split()))
 
+def main(argv):
+    print ('Argument List:', str(sys.argv))
+    try:
+        opts, args = getopt.getopt(argv,"c::",["ifile=","ofile="])
+    except getopt.GetoptError:
+        print ('Exalted_3rd_Character -c <characterfile>')
+        sys.exit(2)
+    for opt, arg in opts:
+        if opt == '-h':
+            print ('Exalted_3rd_Character -c <characterfile>')
+            sys.exit()
+        elif opt in ("-c", "--character"):
+            inCharacter = arg
+    with open(inCharacter) as f:
+        TheCharacter = json.load(f)
+    print(str(TheCharacter.get("charactername")))
+    CharacterPrompt().cmdloop()
 
-with open('Character.json') as f:
-    TheCharacter = json.load(f)
-
-print(str(TheCharacter.get("charactername")))
 
 if __name__ == '__main__':
-    CharacterPrompt().cmdloop()
+
+
+    main(sys.argv[1:])
+
 
 
 #LoopBreaker = 1
