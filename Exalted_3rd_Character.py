@@ -65,6 +65,8 @@ class CharacterPrompt(cmd.Cmd):
         print(yaml.dump(TheCharacter.get("willpower"), default_flow_style=False))
     def help_willpower(self, inp):
         print("Shows permanent willpower")
+    def do_healthlevels(self, inp):
+        print(yaml.dump(TheCharacter.get("healthlevels"), default_flow_style=False))
 
     #Attributes commands
     def do_attributes(self, inp):
@@ -85,6 +87,24 @@ class CharacterPrompt(cmd.Cmd):
     #Weapons commands
     def do_showweapons(self, inp):
         print(yaml.dump(TheCharacter.get("weapons"), default_flow_style=False))
+    def do_witheringattack(self, arg):
+        if arg == "" or len(arg.split()) > 1:
+            print("need one weapon name argument to run")
+            return
+        print("this is stubbed")
+        print(arg)
+        print(TheCharacter.get("weapons").get(arg))
+        if TheCharacter.get("weapons").get(arg).get("ability").lower() is "archery":
+            print("need range accuracy")
+        else:
+            attacklist = []
+            attacklist.append(TheCharacter.get("weapons").get(arg).get("accuracy"))
+            attrib_ability=[]
+            attrib_ability.append(TheCharacter.get("weapons").get(arg).get("ability"))
+            attrib_ability.append(TheCharacter.get("weapons").get(arg).get("attribute"))
+            dice_build_statlist(attrib_ability,attacklist)
+            print(attacklist)
+
 
     #show all charims
     def do_showallcharms(self, inp):
@@ -96,7 +116,6 @@ class CharacterPrompt(cmd.Cmd):
         charmlist = []
         charm_build_list(arglist,charmlist)
         print(charmlist)
-
 
     #Dice Pools, common Pools
     def do_joinbattle(self, arg):
@@ -131,9 +150,6 @@ class CharacterPrompt(cmd.Cmd):
     def help_naturalsoak(self):
         print("Show Natural Soak (Stamina)")
 
-
-
-
     #Dice pools, any
     def do_dice(self, arg):
         arglist=arg.split()
@@ -156,10 +172,12 @@ class CharacterPrompt(cmd.Cmd):
     def help_attributes(self):
         print("Prints list of character Attributes")
 
+
 def parse(arg):
     'Convert a series of zero or more numbers to an argument tuple'
     return tuple(map(int, arg.split()))
 
+############### MAIN DRIVER ###############
 
 with open('Character.json') as f:
     TheCharacter = json.load(f)

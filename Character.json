@@ -86,12 +86,13 @@
      "templateweaponmelee":
      {
        "name": "meleetemp",
-       "accuracy": 1,
+       "accuracy": 3,
        "damage": 1,
        "defence": 1,
        "overwhelming": 1,
        "tags": ["two handed","piercing"],
        "ability": "melee",
+       "attribute": "dexterity",
        "specality": "no"
      },
      "templaterangedaccurancy":
@@ -103,6 +104,7 @@
        "overwhelming": 1,
        "tags": ["ranged"],
        "ability": "archery",
+       "attribute": "dexterity",
        "specality": "yes"
      }
    },
