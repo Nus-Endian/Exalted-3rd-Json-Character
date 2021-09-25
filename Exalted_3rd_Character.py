@@ -172,11 +172,15 @@ def parse(arg):
 
 def main(argv):
     print ('Argument List:', str(sys.argv))
+    print ('Arg length:', len(sys.argv))
+    if len(sys.argv) == 1:
+        print ('For help: use the -h option')
+        sys.exit()
     try:
         opts, args = getopt.getopt(argv,"c::",["ifile=","ofile="])
     except getopt.GetoptError:
         print ('Exalted_3rd_Character -c <characterfile>')
-        sys.exit(2)
+        sys.exit()
     for opt, arg in opts:
         if opt == '-h':
             print ('Exalted_3rd_Character -c <characterfile>')
@@ -190,8 +194,6 @@ def main(argv):
 
 
 if __name__ == '__main__':
-
-
     main(sys.argv[1:])
 
 
