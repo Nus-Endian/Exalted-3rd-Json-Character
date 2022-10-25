@@ -3,6 +3,7 @@ import cmd
 import yaml
 import sys, getopt
 
+TheCharacter = None
 
 #General helpfunctions for CharacterPrompt
 def dice_build_statlist(in_arglist,in_statlist):
@@ -42,6 +43,7 @@ def checkCharacterKey(dict, key):
 class CharacterPrompt(cmd.Cmd):
     intro = 'Welcome to Exalted 3rd Character Shell. Type help or ? to list commands.\n '
     prompt = 'Character: '
+    
     def do_exit(self, inp):
         print("Thank you for using Exalted 3rd Character Interfaces")
         return True
@@ -171,6 +173,7 @@ def parse(arg):
     return tuple(map(int, arg.split()))
 
 def main(argv):
+    global TheCharacter
     print ('Argument List:', str(sys.argv))
     print ('Arg length:', len(sys.argv))
     if len(sys.argv) == 1:
@@ -190,6 +193,8 @@ def main(argv):
     with open(inCharacter) as f:
         TheCharacter = json.load(f)
     print(str(TheCharacter.get("charactername")))
+    print('Character tester')
+    print(yaml.dump(TheCharacter.get("charms"), default_flow_style=False))
     CharacterPrompt().cmdloop()
 
 
