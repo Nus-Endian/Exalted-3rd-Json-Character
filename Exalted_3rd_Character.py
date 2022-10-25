@@ -194,7 +194,6 @@ def main(argv):
         TheCharacter = json.load(f)
     print(str(TheCharacter.get("charactername")))
     print('Character tester')
-    print(yaml.dump(TheCharacter.get("charms"), default_flow_style=False))
     CharacterPrompt().cmdloop()
 
 
