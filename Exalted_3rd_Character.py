@@ -40,6 +40,10 @@ def checkCharacterKey(dict, key):
         print("Not present")
     return
 
+def writeCharacterToFile(WriteCharacter, FileName):
+    with open(FileName, "w") as outfile:
+            json.dump(WriteCharacter, outfile, indent=4)
+
 class CharacterPrompt(cmd.Cmd):
     intro = 'Welcome to Exalted 3rd Character Shell. Type help or ? to list commands.\n '
     prompt = 'Character: '
@@ -167,6 +171,13 @@ class CharacterPrompt(cmd.Cmd):
         print("Prints a condensed list of Character abilities")
     def help_attributes(self):
         print("Prints list of character Attributes")
+    #Untility Function
+    def do_writefile(self, arg):
+        writeCharacterToFile(TheCharacter,arg)
+    def help_writefile(self):
+        print("writefile <characterfile.json>")
+        print("This writes out to the file specified")
+
 
 def parse(arg):
     'Convert a series of zero or more numbers to an argument tuple'
