@@ -44,6 +44,11 @@ def writeCharacterToFile(WriteCharacter, FileName):
     with open(FileName, "w") as outfile:
             json.dump(WriteCharacter, outfile, indent=4)
 
+def updateCharacterValue(inCharacterKey,inCharacterValue):
+    CharacterKey = inCharacterKey
+    CharacterValue = inCharacterValue
+    TheCharacter[CharacterKey] = CharacterValue
+
 class CharacterPrompt(cmd.Cmd):
     intro = 'Welcome to Exalted 3rd Character Shell. Type help or ? to list commands.\n '
     prompt = 'Character: '
@@ -73,7 +78,7 @@ class CharacterPrompt(cmd.Cmd):
 
     #Top Level Statistics
     def do_name(self, inp):
-        print(yaml.dump(TheCharacter.get("name"), default_flow_style=False))
+        print(yaml.dump(TheCharacter.get("charactername"), default_flow_style=False))
     def do_essence(self, inp):
         print(yaml.dump(TheCharacter.get("essence"), default_flow_style=False))
     def do_willpower(self, inp):
@@ -97,6 +102,9 @@ class CharacterPrompt(cmd.Cmd):
             return
         print(TheCharacter.get("abilities")[arg])
         #arg)
+    def help_ability(self):
+        print("ability <ability>")
+        print("print a single ability's value")
 
     #Weapons commands
     def do_showweapons(self, inp):
@@ -171,13 +179,25 @@ class CharacterPrompt(cmd.Cmd):
         print("Prints a condensed list of Character abilities")
     def help_attributes(self):
         print("Prints list of character Attributes")
+    
+    #update value functions:
+    def do_updateValue(self, arg):
+        arglist=arg.split()
+        len(arglist)
+        if arglist[0] in TheCharacter:
+            updateCharacterValue(arglist[0],arglist[1])
+            print("Exists")
+        else:
+            print("Does not exist")
+
     #Untility Function
     def do_writefile(self, arg):
         writeCharacterToFile(TheCharacter,arg)
     def help_writefile(self):
         print("writefile <characterfile.json>")
         print("This writes out to the file specified")
-
+    def do_printCharacterRaw(self, arg):
+        print(TheCharacter)
 
 def parse(arg):
     'Convert a series of zero or more numbers to an argument tuple'
