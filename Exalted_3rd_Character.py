@@ -2,6 +2,9 @@ import json
 import cmd
 import yaml
 import sys, getopt
+#from rich import print
+#from rich import pretty
+#pretty.install()
 
 TheCharacter = None
 
@@ -40,6 +43,18 @@ def checkCharacterKey(dict, key):
         print("Not present")
     return
 
+def finddictkey(characterdict,characterkey):
+      for k,characterkey in characterdict.items():        
+         if isinstance(characterkey, dict):
+                iterdict(v)
+         else:            
+             print (k,":",v)
+
+def openCharacterFromFile(CharacterFilename):
+    global TheCharacter
+    with open(CharacterFilename) as f:
+                TheCharacter = json.load(f)
+
 def writeCharacterToFile(WriteCharacter, FileName):
     with open(FileName, "w") as outfile:
             json.dump(WriteCharacter, outfile, indent=4)
@@ -47,7 +62,34 @@ def writeCharacterToFile(WriteCharacter, FileName):
 def updateCharacterValue(inCharacterKey,inCharacterValue):
     CharacterKey = inCharacterKey
     CharacterValue = inCharacterValue
-    TheCharacter[CharacterKey] = CharacterValue
+    if inCharacterKey in TheCharacter:
+        if inCharacterKey in TheCaracter['attributes']:
+            print("Exist attributes")
+        elif inCharacterKey in TheCharacter['abilities']:
+            print("Exist abilities")
+        else:
+            TheCharacter[CharacterKey] = CharacterValue
+            print("top Exists")
+    else:
+        print("Does not Exist")
+
+def updateAttributeValue(inCharacterKey,inCharacterValue):
+    CharacterKey = inCharacterKey
+    CharacterValue = inCharacterValue
+    if inCharacterKey in TheCharacter['attributes']:
+        TheCharacter['attributes'][CharacterKey] = CharacterValue
+        print("Exist attributes")
+    else:
+        print("Does not Exist")
+
+def updateAbilityValue(inCharacterKey,inCharacterValue):
+        CharacterKey = inCharacterKey
+        CharacterValue = inCharacterValue
+        if inCharacterKey in TheCharacter['abilities']:
+            TheCharacter['abilities'][CharacterKey] = CharacterValue
+            print("Exist attributes")
+        else:
+            print("Does not Exist")
 
 class CharacterPrompt(cmd.Cmd):
     intro = 'Welcome to Exalted 3rd Character Shell. Type help or ? to list commands.\n '
@@ -183,16 +225,30 @@ class CharacterPrompt(cmd.Cmd):
     #update value functions:
     def do_updateValue(self, arg):
         arglist=arg.split()
-        len(arglist)
-        if arglist[0] in TheCharacter:
+        if len(arglist) == 2:
             updateCharacterValue(arglist[0],arglist[1])
-            print("Exists")
         else:
-            print("Does not exist")
+            print("updateValue <character stat> <new value>")
+
+    def do_updateAbility(self, arg):
+        arglist=arg.split()
+        if len(arglist) == 2:
+            updateAbilityValue(arglist[0],arglist[1])
+        else:
+            print("updateAbility <character stat> <new value>")
+
+    def do_updateAttribute(self, arg):
+        arglist=arg.split()
+        if len(arglist) == 2:
+            updateAttributeValue(arglist[0],arglist[1])
+        else:
+            print("updateAttribute <character stat> <new value>")
 
     #Untility Function
     def do_writefile(self, arg):
         writeCharacterToFile(TheCharacter,arg)
+    def do_openfile(self, arg):
+        openCharacterFromFile(CharacterFilename)    
     def help_writefile(self):
         print("writefile <characterfile.json>")
         print("This writes out to the file specified")
@@ -221,10 +277,16 @@ def main(argv):
             sys.exit()
         elif opt in ("-c", "--character"):
             inCharacter = arg
-    with open(inCharacter) as f:
-        TheCharacter = json.load(f)
+    openCharacterFromFile(inCharacter)
+#    with open(inCharacter) as f:
+#        TheCharacter = json.load(f)
+
+    if(TheCharacter is None):
+        print("Please create a Character or open")
+
     print(str(TheCharacter.get("charactername")))
     print('Character tester')
+ 
     CharacterPrompt().cmdloop()
 
 
@@ -233,18 +295,3 @@ if __name__ == '__main__':
 
 
 
-#LoopBreaker = 1
-#while LoopBreaker > 0:
-#    print("What do you want")
-#    t_input = input("Character: ")
-
-#    if t_input.lower() == "exit":
-#        exit()
-
-#    if t_input in TheCharacter:
-#        print("yes," + t_input + " is one of the keys")
-
-#    if t_input.lower() == "character":
-#        print(TheCharacter.keys())
-
-#    checkCharacterKey(TheCharacter, t_input.lower())
