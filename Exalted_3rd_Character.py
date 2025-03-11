@@ -92,8 +92,8 @@ def updateAbilityValue(inCharacterKey,inCharacterValue):
         else:
             print("Does not Exist")
 
-def GetSingleCharacter(CharacterObj)
-    return yaml.dump(TheCharacterObj, default_flow_style=False))
+def GetSingleCharacterItem  (CharacterObj,KeyValue):
+    return yaml.dump(CharacterObj, default_flow_style=False)
 
 class CharacterPrompt(cmd.Cmd):
     intro = 'Welcome to Exalted 3rd Character Shell. Type help or ? to list commands.\n '
@@ -136,7 +136,7 @@ class CharacterPrompt(cmd.Cmd):
 
     #Abilities commands
     def do_abilities(self, inp):
-        print(yaml.dump(TheCharacter.get("abilities"), default_flow_style=False))
+        print(GetSingleCharacterItem(TheCharacter,"abilities"))
     def do_shortabilities(self, inp):
         print(str(TheCharacter.get("abilities")))
     def do_ability(self, arg):
