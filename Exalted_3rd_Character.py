@@ -2,6 +2,7 @@ import json
 import cmd
 import yaml
 import sys, getopt
+import argparse
 #from rich import print
 #from rich import pretty
 #pretty.install()
@@ -90,6 +91,9 @@ def updateAbilityValue(inCharacterKey,inCharacterValue):
             print("Exist attributes")
         else:
             print("Does not Exist")
+
+def GetSingleCharacter(CharacterObj)
+    return yaml.dump(TheCharacterObj, default_flow_style=False))
 
 class CharacterPrompt(cmd.Cmd):
     intro = 'Welcome to Exalted 3rd Character Shell. Type help or ? to list commands.\n '
@@ -236,12 +240,16 @@ class CharacterPrompt(cmd.Cmd):
             updateAbilityValue(arglist[0],arglist[1])
         else:
             print("updateAbility <character stat> <new value>")
+    def help_updateAbility(self):
+        print("updateAbility <character stat> <new value>")
 
     def do_updateAttribute(self, arg):
         arglist=arg.split()
         if len(arglist) == 2:
             updateAttributeValue(arglist[0],arglist[1])
         else:
+            print("updateAttribute <character stat> <new value>")
+    def help_updateAttribute(self):
             print("updateAttribute <character stat> <new value>")
 
     #Untility Function
@@ -261,25 +269,36 @@ def parse(arg):
 
 def main(argv):
     global TheCharacter
-    print ('Argument List:', str(sys.argv))
-    print ('Arg length:', len(sys.argv))
-    if len(sys.argv) == 1:
-        print ('For help: use the -h option')
-        sys.exit()
-    try:
-        opts, args = getopt.getopt(argv,"c::",["ifile=","ofile="])
-    except getopt.GetoptError:
-        print ('Exalted_3rd_Character -c <characterfile>')
-        sys.exit()
-    for opt, arg in opts:
-        if opt == '-h':
-            print ('Exalted_3rd_Character -c <characterfile>')
-            sys.exit()
-        elif opt in ("-c", "--character"):
-            inCharacter = arg
-    openCharacterFromFile(inCharacter)
-#    with open(inCharacter) as f:
-#        TheCharacter = json.load(f)
+#    print ('Argument List:', str(sys.argv))
+#    print ('Arg length:', len(sys.argv))
+#    if len(sys.argv) == 1:
+#        print ('For help: use the -h option')
+#        sys.exit()
+#    try:
+#        opts, args = getopt.getopt(argv,"c::",["ifile=","ofile="])
+#    except getopt.GetoptError:
+#        print ('Exalted_3rd_Character -c <characterfile>')
+#        sys.exit()
+#    for opt, arg in opts:
+#        if opt == '-h':
+#            print ('Exalted_3rd_Character -c <characterfile>')
+#            sys.exit()
+#        elif opt in ("-c", "--character"):
+#            inCharacter = arg
+#)
+parser = argparse.ArgumentParser(
+    prog='Exalted 3rd Edition Character Sheet helper',
+    description='This assists a player is running their character',
+    epilog='-c <character>')
+parser.add_argument('-c', '--character', type=str, default='NewCharacter', help='Character Sheet to Load')
+parser.add_argument('-l', '--cmdline', action='store_true')
+
+args = parser.parse_args()
+
+if args.character != 'NewCharacter':
+    openCharacterFromFile(args.character)
+    with open(args.character) as f:
+        TheCharacter = json.load(f)
 
     if(TheCharacter is None):
         print("Please create a Character or open")
