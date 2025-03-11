@@ -132,7 +132,7 @@ class CharacterPrompt(cmd.Cmd):
 
     #Attributes commands
     def do_attributes(self, inp):
-        print(yaml.dump(TheCharacter.get("attributes"), default_flow_style=False))
+        print(GetSingleCharacterItem(TheCharacter,"attributes"))
 
     #Abilities commands
     def do_abilities(self, inp):
