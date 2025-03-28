@@ -124,11 +124,11 @@ class CharacterPrompt(cmd.Cmd):
 
     #Top Level Statistics
     def do_name(self, inp):
-        print(yaml.dump(TheCharacter.get("charactername"), default_flow_style=False))
+        print(GetSingleCharacterItem(TheCharacter,"charactername"))
     def do_essence(self, inp):
-        print(yaml.dump(TheCharacter.get("essence"), default_flow_style=False))
+        print(GetSingleCharacterItem(TheCharacter,"essence"))
     def do_willpower(self, inp):
-        print(yaml.dump(TheCharacter.get("willpower"), default_flow_style=False))
+        GetSingleCharacterItem(TheCharacter,"willpower")
 
     #Attributes commands
     def do_attributes(self, inp):
@@ -138,7 +138,7 @@ class CharacterPrompt(cmd.Cmd):
     def do_abilities(self, inp):
         print(GetSingleCharacterItem(TheCharacter,"abilities"))
     def do_shortabilities(self, inp):
-        print(str(TheCharacter.get("abilities")))
+        print(yaml.dump(TheCharacter.get("abilities")))
     def do_ability(self, arg):
         #'Save future commands to filename:  RECORD rose.cmd'
         #self.file = open(arg, 'w')
@@ -154,11 +154,11 @@ class CharacterPrompt(cmd.Cmd):
 
     #Weapons commands
     def do_showweapons(self, inp):
-        print(yaml.dump(TheCharacter.get("weapons"), default_flow_style=False))
+        print(GetSingleCharacterItem(TheCharacter,"weapons"))
 
     #show all charims
     def do_showallcharms(self, inp):
-        print(yaml.dump(TheCharacter.get("charms"), default_flow_style=False))
+        print(GetSingleCharacterItem(TheCharacter,"charms"))
     def do_excellencies(self, inp):
         print(yaml.dump(TheCharacter.get("charms").get("excellencies"), default_flow_style=False))
     def do_charmlist(self, arg):
@@ -170,6 +170,7 @@ class CharacterPrompt(cmd.Cmd):
 
     #Dice Pools, common Pools
     def do_joinbattle(self, arg):
+        import pdb ; breakpoint()
         self.onecmd("dice perception awareness")
     def help_joinbattle(self):
         print("shows join battle roll (perception+awareness)")
