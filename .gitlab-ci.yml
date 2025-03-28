@@ -1,0 +1,7 @@
+default:
+  image:  nus-endian.local:5050/brian/exalted-3rd-json-character
+  before_script:
+    - dnf install -y python3 expect
+basic-useage:
+  script:
+    - python3 Exalted_3rd_Character.py --help
