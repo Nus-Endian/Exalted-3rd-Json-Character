@@ -1,7 +1,8 @@
 default:
-  image:  nus-endian.local:5050/brian/exalted-3rd-json-character
+  #image:  nus-endian.local:5050/brian/exalted-3rd-json-character
+  fedora:43
   before_script:
     - dnf install -y python3 expect
 basic-useage:
   script:
-    - bash -c python3 Exalted_3rd_Character.py --help
+    - python3 Exalted_3rd_Character.py --help
