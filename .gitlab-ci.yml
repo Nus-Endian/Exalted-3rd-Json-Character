@@ -3,6 +3,7 @@ default:
   image: fedora:43
   before_script:
     - dnf install -y python3 expect
+    - pip3 install yaml
 basic-useage:
   script:
     - python3 Exalted_3rd_Character.py --help
