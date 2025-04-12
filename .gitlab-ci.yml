@@ -10,4 +10,5 @@ basic-useage:
     - chmod 700 Expect_Test/*
 Basic_CLI:
   script:
-    - expect Expect_Test/1_Basic_CLI.Expect
+    - chmod 700 Expect_Test/*
+    - Expect_Test/1_Basic_CLI.Expect
