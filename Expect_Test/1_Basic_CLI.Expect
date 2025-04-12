@@ -2,7 +2,7 @@
 
 spawn python3 Exalted_3rd_Character.py -c Character.json
 expect "Character:/r"
-#send -- "help\r"
+send -- "help\r"
 expect "What's your favorite color?\r"
 #send -- "Blue\r"
 #expect "How many cats do you have?\r"
