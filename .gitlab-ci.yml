@@ -2,7 +2,7 @@ default:
   #image:  nus-endian.local:5050/brian/exalted-3rd-json-character
   image: fedora:43
   before_script:
-    - dnf install -y python3 expect
+    - dnf install -y python3 expect pip3
     - pip3 install yaml
 basic-useage:
   script:
