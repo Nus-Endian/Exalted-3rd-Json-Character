@@ -4,4 +4,4 @@ default:
     - dnf install -y python3 expect
 basic-useage:
   script:
-    - python3 Exalted_3rd_Character.py --help
+    - bash -c python3 Exalted_3rd_Character.py --help
