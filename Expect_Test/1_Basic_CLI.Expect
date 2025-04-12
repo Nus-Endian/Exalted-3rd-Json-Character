@@ -1,11 +1,11 @@
 #!/usr/bin/expect
 
 spawn python3 Exalted_3rd_Character.py -c Character.json
-#expect "Hello, who is this?\r"
-#send -- "phoenixNAP\r"
+expect "Character\r"
+#send -- "help\r"
 #expect "What's your favorite color?\r"
 #send -- "Blue\r"
 #expect "How many cats do you have?\r"
 #send -- "1\r"
 #expect eof
-exit
+send exit
