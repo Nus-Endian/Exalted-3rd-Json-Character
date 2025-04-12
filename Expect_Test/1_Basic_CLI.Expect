@@ -8,4 +8,5 @@ send -- "help\r"
 #expect "How many cats do you have?\r"
 #send -- "1\r"
 #expect eof
+expect "Character:"
 send exit
