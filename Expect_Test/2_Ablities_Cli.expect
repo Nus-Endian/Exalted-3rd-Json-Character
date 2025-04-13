@@ -1,0 +1,7 @@
+#!/usr/bin/expect
+
+spawn python3 Exalted_3rd_Character.py -c Character.json
+expect "Character:"
+send -- "abilities\r"
+expect "Character:"
+send exit
