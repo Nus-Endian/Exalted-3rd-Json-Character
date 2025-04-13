@@ -8,7 +8,11 @@ basic-useage:
   script:
     - python3 Exalted_3rd_Character.py --help
     - chmod 700 Expect_Test/*
-Basic_CLI:
+1_Basic_CLI:
   script:
     - chmod 700 Expect_Test/*
     - Expect_Test/1_Basic_CLI.Expect
+2_Ablities_Cli.expect:
+   script:
+     - chmod 700 Expect_Test/*
+     - Expect_Test/2_Ablities_Cli.expect
