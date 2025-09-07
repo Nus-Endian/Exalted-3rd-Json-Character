@@ -51,6 +51,15 @@ def finddictkey(characterdict,characterkey):
          else:            
              print (k,":",v)
 
+def from_list_set_output_to_integer(in_list_set):
+      # changes a list of sets to a running addition of all numbers
+      thenumber = int(0)
+      for item in in_list_set:
+          for elementitem in item:
+             if elementitem.isdigit():
+               thenumber = thenumber + int(elementitem)
+      return thenumber
+
 def openCharacterFromFile(CharacterFilename):
     global TheCharacter
     with open(CharacterFilename) as f:
@@ -170,7 +179,7 @@ class CharacterPrompt(cmd.Cmd):
 
     #Dice Pools, common Pools
     def do_joinbattle(self, arg):
-        import pdb ; breakpoint()
+       # import pdb ; breakpoint()
         self.onecmd("dice perception awareness")
     def help_joinbattle(self):
         print("shows join battle roll (perception+awareness)")
@@ -210,7 +219,7 @@ class CharacterPrompt(cmd.Cmd):
         arglist=arg.split()
         statlist = []
         dice_build_statlist(arglist,statlist)
-        print(statlist)
+        print(from_list_set_output_to_integer(statlist))
     def help_dice(self):
         print("Usage: dice (ability/attribute/essence/willpower)")
         print("This will give use all stats and the number of dots specified")
