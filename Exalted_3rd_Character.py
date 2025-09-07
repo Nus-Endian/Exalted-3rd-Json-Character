@@ -102,7 +102,7 @@ def updateAbilityValue(inCharacterKey,inCharacterValue):
             print("Does not Exist")
 
 def GetSingleCharacterItem  (CharacterObj,KeyValue):
-    return yaml.dump(CharacterObj, default_flow_style=False)
+    return yaml.dump(CharacterObj.get(KeyValue), default_flow_style=False)
 
 class CharacterPrompt(cmd.Cmd):
     intro = 'Welcome to Exalted 3rd Character Shell. Type help or ? to list commands.\n '
