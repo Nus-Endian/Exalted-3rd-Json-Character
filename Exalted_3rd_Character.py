@@ -135,7 +135,7 @@ class CharacterPrompt(cmd.Cmd):
     def do_name(self, inp):
         print(GetSingleCharacterItem(TheCharacter,"charactername"))
     def do_essence(self, inp):
-        print(GetSingleCharacterItem(TheCharacter,"essence"))
+        print("Essence " + GetSingleCharacterItem(TheCharacter,"essence"))
     def do_willpower(self, inp):
         GetSingleCharacterItem(TheCharacter,"willpower")
 
