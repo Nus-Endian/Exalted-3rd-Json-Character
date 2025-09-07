@@ -105,7 +105,7 @@ def GetSingleCharacterItem  (CharacterObj,KeyValue):
     return yaml.dump(CharacterObj.get(KeyValue), default_flow_style=False)
 
 class CharacterPrompt(cmd.Cmd):
-    intro = 'Welcome to Exalted 3rd Character Shell. Type help or ? to list commands.\n '
+    intro = 'Welcome to the Exalted 3rd Character Shell. Type help or ? to list commands.\n '
     prompt = 'Character: '
     
     def do_exit(self, inp):
